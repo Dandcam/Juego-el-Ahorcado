@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮 Juego del Ahorcado</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>🎮 Juego del Ahorcado</h1>
+
+  <!-- Pantalla para ingresar la palabra secreta -->
+  <div id="configuracion">
+    <label for="palabraSecreta">Ingresa la palabra secreta:</label>
+    <input type="password" id="palabraSecreta" autofocus>
+    <button id="btn-iniciar">Iniciar juego</button>
+  </div>
+
+  <!-- Pantalla del juego -->
+  <div id="juego" style="display:none;">
+    <div id="progreso"></div>
+    <div id="incorrectas">❌ Letras incorrectas:</div>
+    <div id="intentos">🔁 Intentos restantes: 6</div>
+
+    <canvas id="ahorcado" width="250" height="200"></canvas>
+
+    <!-- Botones de letras -->
+    <div id="letras"></div>
+  </div>
+</body>
+</html>
