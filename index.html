@@ -2,30 +2,92 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎮 Juego del Ahorcado</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>🎮 Juego del Ahorcado</h1>
+  <div class="container">
+    <header>
+      <h1>🎮 Juego del Ahorcado</h1>
+      <div class="puntuacion">
+        <span id="puntos">Puntos: 0</span>
+        <span id="racha">Racha: 0</span>
+      </div>
+    </header>
 
-  <!-- Pantalla para ingresar la palabra secreta -->
-  <div id="configuracion">
-    <label for="palabraSecreta">Ingresa la palabra secreta:</label>
-    <input type="password" id="palabraSecreta" autofocus>
-    <button id="btn-iniciar">Iniciar juego</button>
+    <!-- Pantalla para ingresar la palabra secreta -->
+    <section id="configuracion" class="pantalla">
+      <h2>Configuración del Juego</h2>
+      <div class="opciones">
+        <div class="opcion">
+          <label for="dificultad">Dificultad:</label>
+          <select id="dificultad">
+            <option value="facil">Fácil (6 intentos)</option>
+            <option value="medio" selected>Medio (5 intentos)</option>
+            <option value="dificil">Difícil (4 intentos)</option>
+          </select>
+        </div>
+        <div class="opcion">
+          <label for="categoria">Categoría:</label>
+          <select id="categoria">
+            <option value="manual">Ingresar palabra manualmente</option>
+            <option value="animales">Animales</option>
+            <option value="paises">Países</option>
+            <option value="frutas">Frutas</option>
+            <option value="deportes">Deportes</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="entradaManual" class="entrada-palabra">
+        <label for="palabraSecreta">Ingresa la palabra secreta:</label>
+        <input type="password" id="palabraSecreta" placeholder="Palabra secreta" autofocus>
+        <button id="btn-iniciar" class="btn-principal">Iniciar juego</button>
+      </div>
+      
+      <div id="botonCategoria" style="display: none;">
+        <button id="btn-iniciar-aleatorio" class="btn-principal">Jugar con palabra aleatoria</button>
+      </div>
+    </section>
+
+    <!-- Pantalla del juego -->
+    <section id="juego" class="pantalla" style="display:none;">
+      <div class="info-juego">
+        <div id="progreso" class="progreso"></div>
+        <div id="pista" class="pista"></div>
+        <div id="incorrectas" class="incorrectas">❌ Letras incorrectas:</div>
+        <div id="intentos" class="intentos">🔁 Intentos restantes: 6</div>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="ahorcado" width="250" height="250"></canvas>
+        <div id="efectos" class="efectos"></div>
+      </div>
+
+      <!-- Teclado virtual -->
+      <div id="teclado" class="teclado"></div>
+      
+      <div class="botones-juego">
+        <button id="btn-pista" class="btn-secundario">💡 Pedir pista (-5 pts)</button>
+        <button id="btn-reiniciar" class="btn-secundario">🔄 Nuevo juego</button>
+      </div>
+    </section>
+
+    <!-- Pantalla de fin de juego -->
+    <section id="fin-juego" class="pantalla modal" style="display:none;">
+      <div class="modal-contenido">
+        <h2 id="titulo-fin"></h2>
+        <p id="mensaje-fin"></p>
+        <div id="estadisticas-fin"></div>
+        <button id="btn-jugar-nuevo" class="btn-principal">Jugar de nuevo</button>
+      </div>
+    </section>
   </div>
 
-  <!-- Pantalla del juego -->
-  <div id="juego" style="display:none;">
-    <div id="progreso"></div>
-    <div id="incorrectas">❌ Letras incorrectas:</div>
-    <div id="intentos">🔁 Intentos restantes: 6</div>
-
-    <canvas id="ahorcado" width="250" height="200"></canvas>
-
-    <!-- Botones de letras -->
-    <div id="letras"></div>
-  </div>
+  <!-- Efectos de partículas -->
+  <div id="particulas-container"></div>
 </body>
 </html>
